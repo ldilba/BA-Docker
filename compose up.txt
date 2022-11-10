@@ -1,0 +1,24 @@
+sudo docker compose -f '/mnt/c/Dev/BA/BA-Docker/docker-compose.build.yml' build
+
+sudo docker compose -f '/mnt/c/Dev/BA/BA-Docker/docker-compose.mysql.yml' up -d
+
+####First time install - DB setup:####
+
+sudo docker exec -it <container> bash
+
+mysql -u root -p
+
+create database db_logs;
+
+create table logs
+(
+    id        int auto_increment,
+    level     varchar(255)  null,
+    message   varchar(2000) null,
+    timestamp timestamp     null,
+    uid       varchar(255)  null,
+    constraint logs_pk
+        primary key (id)
+);
+
+sudo docker compose -f '/mnt/c/Dev/BA/BA-Docker/docker-compose.ba.yml' up -d

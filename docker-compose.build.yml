@@ -1,0 +1,11 @@
+version: '3.3'
+services: 
+    flask-backend:
+        build: 
+            context: ../BA-Backend/
+            network: host
+    
+    flask-services:
+        build:
+            context: ../BA-Services/
+            network: host
