@@ -22,3 +22,6 @@ create table logs
 );
 
 sudo docker compose -f '/mnt/c/Dev/BA/BA-Docker/docker-compose.ba.yml' up -d
+
+#### After first install ####
+sudo docker compose -f '/mnt/c/Dev/BA/BA-Docker/docker-compose.complete.yml' up -d

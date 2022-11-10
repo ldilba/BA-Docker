@@ -23,6 +23,19 @@ services:
         image: redis:latest
         networks:
             - custom-network
+            
+    mysql: 
+        ports: 
+            - '3333:3306'
+        volumes: 
+            - mysql-conf:/etc/mysql/conf.d
+            - mysql-storage:/var/lib/mysql
+        restart: on-failure
+        environment: 
+            MYSQL_ROOT_PASSWORD: admin
+        image: mysql:latest
+        networks:
+            - custom-network
         
     flask-backend:
         ports: 
@@ -31,6 +44,7 @@ services:
         restart: on-failure
         depends_on: 
             - redis
+            - mysql
             - rabbitmq
         environment:
             - REDIS_HOST=redis
@@ -54,6 +68,8 @@ services:
         ports:
             - '3000:3000'
         restart: on-failure
+        depends_on: 
+            - mysql
         volumes:
             - grafana-storage:/var/lib/grafana
         image: grafana/grafana:latest
@@ -68,3 +84,5 @@ networks:
         
 volumes:
   grafana-storage:
+  mysql-storage:
+  mysql-conf:
