@@ -10,6 +10,8 @@ mysql -u root -p
 
 create database db_logs;
 
+use db_logs;
+
 create table logs
 (
     id        int auto_increment,
