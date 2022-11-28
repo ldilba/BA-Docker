@@ -1,0 +1,28 @@
+version: '3.3'
+services:       
+        
+    flask-backend:
+        ports: 
+            - '5000:80'
+        image: ba-docker-flask-backend
+        restart: on-failure
+        environment:
+            - REDIS_HOST=redis
+            - RABBIT_HOST=rabbitmq
+            - MYSQL_HOST=mysql
+            - MYSQL_PORT=3306
+            - JWT_PASSWORD=e8tzvw-tH!DFGsg9
+        networks:
+            - custom-network
+
+    frontend:
+        image: ba-docker-frontend
+        ports:
+            - 4200:4200
+        command: >
+            bash -c "npm install && ng serve --host 0.0.0.0 --port 4200"
+            
+networks: 
+    custom-network:
+        driver: bridge
+        name: custom-network

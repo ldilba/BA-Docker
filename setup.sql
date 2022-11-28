@@ -22,3 +22,5 @@ create table services
         primary key (id)
 );
 
+insert into services (service, display_name)
+values ('text-similarity', 'Text Similarity');

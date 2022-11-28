@@ -1,0 +1,6 @@
+version: '3.3'
+services:   
+    flask-services:
+        build:
+            context: ../BA-Services/
+            network: host

@@ -6,6 +6,7 @@ services:
         volumes: 
             - mysql-conf:/etc/mysql/conf.d
             - mysql-storage:/var/lib/mysql
+            - setup.sql:/docker-entrypoint-initdb.d/init.sql:ro
         restart: on-failure
         environment: 
             MYSQL_ROOT_PASSWORD: admin
@@ -21,3 +22,4 @@ networks:
 volumes:
   mysql-storage:
   mysql-conf:
+  
