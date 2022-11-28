@@ -11,5 +11,5 @@ services:
             network: host
     frontend:
         build:
-            context: ../BA-Frontend/BA-Frontend/
+            context: ../BA-Frontend/
             network: host
